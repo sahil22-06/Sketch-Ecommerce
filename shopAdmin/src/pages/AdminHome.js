@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useToast } from "../components/CustomToast";
 import { collection, query, getDocs, orderBy, limit } from "firebase/firestore";
@@ -484,6 +484,7 @@ const AdminDashboard = () => {
 const AdminHome = () => {
   const [setIsLoggedIn] = useState(true); 
   const location = useLocation();
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   /**
@@ -492,7 +493,7 @@ const AdminHome = () => {
   const handleLogout = () => {
     setIsLoggedIn(false); 
     toast.success("Logged out successfully!");
-    window.location.href = "/login"; 
+    navigate("/login"); 
   };
 
   // Check if we're on a management route to hide the welcome content
@@ -601,7 +602,9 @@ const AdminHome = () => {
           </>
         )}
         {isManageRoute || location.pathname !== "/" ? (
-          <Outlet /> /* Render nested routes here */
+          <div className="text-center text-gray-500">
+            <p>Please use the navigation menu to access different sections.</p>
+          </div>
         ) : null}
       </div>
     </div>

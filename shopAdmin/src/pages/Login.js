@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase";
@@ -11,7 +12,7 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [captchaVerified, setCaptchaVerified] = useState(false);
   const recaptchaRef = React.useRef();
-  const navigate = React.useNavigate();
+  const navigate = useNavigate();
   const { toast } = useToast();
 
   const handleLogin = async () => {

@@ -35,17 +35,71 @@ function App() {
                   <AdminHome />
                 </ProtectedRoute>
               }
-            >
-              {/* Dashboard is shown at the root route (inside AdminHome) */}
-              <Route path="orders" element={<Orders />} />
-              <Route path="users" element={<Users />} />
-              <Route path="products" element={<ProductManager />} />
-              <Route path="products/add" element={<AddProduct />} />
-              <Route path="products/edit/:id" element={<EditProduct />} />
-              <Route path="coupons" element={<CouponManager />} />
-              <Route path="banners" element={<BannerManager />} />
-              <Route path="announcements" element={<AnnouncementManager />} />
-            </Route>
+            />
+            <Route 
+              path="/orders" 
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <Orders />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/users" 
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <Users />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/products" 
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <ProductManager />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/products/add" 
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <AddProduct />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/products/edit/:id" 
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <EditProduct />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/coupons" 
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <CouponManager />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/banners" 
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <BannerManager />
+                </ProtectedRoute>
+              }
+            />
+            <Route 
+              path="/announcements" 
+              element={
+                <ProtectedRoute requiredRole="Admin">
+                  <AnnouncementManager />
+                </ProtectedRoute>
+              }
+            />
             {/* Optionally, handle 404 Not Found */}
             <Route path="*" element={<div className="p-4">404 Not Found</div>} />
           </Routes>
